@@ -7,11 +7,25 @@ var setName = (user,fullName)=>{
     user.firstname = names[0];
     user.lastname = names[1];
     return user;
-}
+};
+
+var asyncAdd =(a,b,callback)=>{
+setTimeout(()=>{
+    callback(a+b);
+},1000);
+};
+
+var asyncSquare =(x,callback)=>{
+    setTimeout(()=>{
+        callback(x*x);
+    },1000);
+};
 
 
 module.exports = {
     add,
     square,
-    setName
+    setName,
+    asyncAdd,
+    asyncSquare
 }

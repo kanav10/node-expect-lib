@@ -19,7 +19,7 @@ it('should square the given numbers',()=>{
     //     throw new Error('sorry bad request!!');
     // }
 });
-
+//normal method
 it('should expect some values',()=>{
     // expect(12).toNotBe(11);
     expect({name :"Kanav"}).toEqual({name:"Kanav"});
@@ -52,4 +52,18 @@ it('should verify the last and the first names ',()=>{
         lastname : 'Malik'
     });
 
+});
+//async method
+it('should add two numbers',(done)=>{
+    var res = utils.asyncAdd(3,4,(sum)=>{
+        expect(sum).toBe(7).toBeA('number');
+        done();
+
+    });
+});
+it('shoud check the square asynchronously',(done)=>{
+    var res = utils.asyncSquare(2,(square)=>{
+        expect(square).toBe(4).toBeA('number');
+        done();
+    });
 });
