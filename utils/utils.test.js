@@ -2,68 +2,74 @@ const expect = require('expect');
 
 const utils = require('./utils');
 
-it('should add two numbers',()=>{
-    var res = utils.add(33,11);
-   
-    expect(res).toBe(44).toBeA('number');
-    // if(res!= 44){
-    //     throw new Error(`expected 44 ,got back ${res}.`);
-    // }
-});
 
-it('should square the given numbers',()=>{
-    var res = utils.square(2);
-
-    expect(res).toBe(4).toBeA('number');
-    // if( res!= 4){
-    //     throw new Error('sorry bad request!!');
-    // }
-});
-//normal method
-it('should expect some values',()=>{
-    // expect(12).toNotBe(11);
-    expect({name :"Kanav"}).toEqual({name:"Kanav"});
-    expect({name:'kanav'}).toNotEqual({name:"mihika"});
-    expect([1,2,3,4]).toInclude(4);
-    expect([1,2,3,4,5]).toExclude(6);
-});
-
-it('should also expect some values out of it',()=>{
-    expect({
-        name:'kanav',
-        age: 20,
-        location:'new delhi'
-    })
-    .toInclude({
-        age: 20,
-    })
-});
-
-it('should verify the last and the first names ',()=>{
-    var user = {
-        location:'new delhi',
-        age:'20',
-    };
-    var res = utils.setName(user, "kanav Malik");
+describe('utils',()=>{
+    describe('#add',()=>{
+        it('should add two numbers',()=>{
+            var res = utils.add(33,11);
+           
+            expect(res).toBe(44).toBeA('number');
+            // if(res!= 44){
+            //     throw new Error(`expected 44 ,got back ${res}.`);
+            // }
+        });        
+    });
     
-    expect(user).toEqual(res);
-    expect(res).toInclude({
-        firstname :'kanav',
-        lastname : 'Malik'
+    it('should square the given numbers',()=>{
+        var res = utils.square(2);
+    
+        expect(res).toBe(4).toBeA('number');
+        // if( res!= 4){
+        //     throw new Error('sorry bad request!!');
+        // }
+    });
+    //normal method
+    it('should expect some values',()=>{
+        // expect(12).toNotBe(11);
+        expect({name :"Kanav"}).toEqual({name:"Kanav"});
+        expect({name:'kanav'}).toNotEqual({name:"mihika"});
+        expect([1,2,3,4]).toInclude(4);
+        expect([1,2,3,4,5]).toExclude(6);
+    });
+    
+    it('should also expect some values out of it',()=>{
+        expect({
+            name:'kanav',
+            age: 20,
+            location:'new delhi'
+        })
+        .toInclude({
+            age: 20,
+        })
+    });
+    
+    it('should verify the last and the first names ',()=>{
+        var user = {
+            location:'new delhi',
+            age:'20',
+        };
+        var res = utils.setName(user, "kanav Malik");
+        
+        expect(user).toEqual(res);
+        expect(res).toInclude({
+            firstname :'kanav',
+            lastname : 'Malik'
+        });
+    
+    });
+    //async method
+    it('should add two numbers',(done)=>{
+        var res = utils.asyncAdd(3,4,(sum)=>{
+            expect(sum).toBe(7).toBeA('number');
+            done();
+    
+        });
+    });
+    it('shoud check the square asynchronously',(done)=>{
+        var res = utils.asyncSquare(2,(square)=>{
+            expect(square).toBe(4).toBeA('number');
+            done();
+        });
     });
 
-});
-//async method
-it('should add two numbers',(done)=>{
-    var res = utils.asyncAdd(3,4,(sum)=>{
-        expect(sum).toBe(7).toBeA('number');
-        done();
-
-    });
-});
-it('shoud check the square asynchronously',(done)=>{
-    var res = utils.asyncSquare(2,(square)=>{
-        expect(square).toBe(4).toBeA('number');
-        done();
-    });
 });
